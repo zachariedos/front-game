@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+	margin: 0;
+	min-width: 320px;
+	min-height: 100vh;
+	background: #e6eef4;
+	--primary-color-50: #F8FBFC;
+	--primary-color-100: #EAF1F6;
+	--primary-color-200: #CDDEEB;
+	--primary-color-300: #B0CCDF;
+	--primary-color-400: #93B9D3;
+	--primary-color-500: #76A6C7;
+	--primary-color-600: #4E8CB7;
+	--primary-color-700: #3B6E91;
+	--primary-color-800: #2B506A;
+	--primary-color-900: #1B3242;
+}
+
+#root {
+	min-height: 100vh;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+}
+
+.no_data {
+	padding: 10px;
+	text-align: center;
+}
+
+.InovuaReactDataGrid__row-hover-target:hover {
+	background-color: var(--primary-color-100) !important;
+}
+
+.inovua-react-toolkit-menu.inovua-react-toolkit-menu--theme-primary .inovua-react-toolkit-menu__row--over {
+	color: #555e68;
+	fill: #555e68;
+	background-color: var(--primary-color-100) !important;
+}
+
+.inovua-react-toolkit-checkbox__icon-wrapper {
+	fill: var(--primary-color-400) !important;
+}
+
+.inovua-react-toolkit-load-mask.inovua-react-toolkit-load-mask--theme-primary {
+	z-index: 1 !important;
+}

@@ -1,0 +1,8 @@
+{
+	"error": {
+		"404": {
+			"message": "An error occurred",
+			"submessage": "Page not found"
+		}
+	}
+}

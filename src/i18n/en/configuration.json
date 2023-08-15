@@ -1,0 +1,18 @@
+{
+	"users": {
+		"create": {
+			"title": "User creation",
+			"action": "Generate user",
+			"notification": {
+				"success": "User {{name}} created [{{id}}]",
+				"error": "An error occurred while creating the user"
+			}
+		},
+		"update": {
+			"title": "Modify user",
+			"title_plural": "Modify users",
+			"action": "Modify user {{user_name}}"
+		},
+		"empty": "No user found"
+	}
+}

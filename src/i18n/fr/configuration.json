@@ -1,0 +1,18 @@
+{
+	"users": {
+		"create": {
+			"title": "Création d'utilisateur",
+			"action": "Générer un utilisateur",
+			"notification": {
+				"success": "Utilisateur {{name}} créé [{{id}}]",
+				"error": "Une erreur est survenue durant la création de l'utilisateur"
+			}
+		},
+		"update": {
+			"title": "Modifier l'utilisateur",
+			"title_plural": "Modifier les utilisateurs",
+			"action": "Modifier l'utilisateur {{user_name}}"
+		},
+		"empty": "Aucun utilisateur"
+	}
+}
