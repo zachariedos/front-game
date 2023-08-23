@@ -1,5 +1,7 @@
+import Switcher from "../Component/Switcher";
+
 export default function Index() {
-	return <div>
-		Accueil
-	</div>
+    return <div>
+
+    </div>
 }
