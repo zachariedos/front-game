@@ -1,0 +1,6 @@
+.CardContainer {
+	@apply h-screen w-screen flex flex-wrap items-center;
+	.Cards{
+		@apply flex-1 flex flex-row justify-center gap-10 items-stretch w-full p-10;
+	}
+}

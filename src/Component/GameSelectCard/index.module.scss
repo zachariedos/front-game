@@ -1,0 +1,12 @@
+.Card{
+  @apply flex flex-1 items-center flex-col w-auto justify-between rounded-xl drop-shadow-xl;
+  .Logo{
+    @apply w-full flex flex-1 items-stretch ;
+  }
+  .GameName{
+    @apply h-12 flex w-full rounded-xl items-center justify-center text-xl font-bold bg-black bg-opacity-20;
+    span{
+      @apply text-white drop-shadow;
+    }
+  }
+}
