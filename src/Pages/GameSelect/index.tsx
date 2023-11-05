@@ -6,9 +6,9 @@ export default function GameSelect() {
 	const {t} = useTranslation()
 	return <div className={styles.CardContainer}>
 		<div className={styles.Cards}>
-		<GameSelectCard Game={Games.Quiz}  GameName={t('Game.Name.Quiz')}/>
-		<GameSelectCard Game={Games.Draw}  GameName={t('Game.Name.Draw')}/>
-		<GameSelectCard Game={Games.BlindTest}  GameName={t('Game.Name.BlindTest')}/>
+		<GameSelectCard Game={Games.Quiz}  GameName={t('configuration:game.quiz.name')}/>
+		<GameSelectCard Game={Games.Draw}  GameName={t('configuration:game.draw.name')}/>
+		<GameSelectCard Game={Games.BlindTest}  GameName={t('configuration:game.blind_test.name')}/>
 		</div>
 	</div>
 }

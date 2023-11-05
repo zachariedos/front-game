@@ -14,5 +14,16 @@
 			"action": "Modifier l'utilisateur {{user_name}}"
 		},
 		"empty": "Aucun utilisateur"
+	},
+	"game": {
+		"quiz": {
+			"name": "Quiz"
+		},
+		"draw": {
+			"name": "Dessin"
+		},
+		"blind_test": {
+			"name": "Blind test"
+		}
 	}
 }
