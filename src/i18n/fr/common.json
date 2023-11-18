@@ -3,6 +3,8 @@
 		"404": {
 			"message": "Un problème est survenu",
 			"submessage": "Page non trouvée"
-		}
-	}
+		},
+		"qr_code": "QR code incorrect"
+	},
+	"enter": "Entrer"
 }

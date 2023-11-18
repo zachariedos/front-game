@@ -1,8 +1,8 @@
 .PageContainer {
-  @apply h-full flex flex-1 justify-center items-center;
+  @apply h-full flex flex-1 justify-center items-center flex-col gap-10;
 
   .qrContainer {
-    @apply h-full w-full absolute top-0 left-0 rounded-xl;
+    @apply h-full w-full absolute top-0 left-0 rounded-xl transform -scale-x-100;
   }
 
   @mixin qrScannerContainer($primaryColor) {

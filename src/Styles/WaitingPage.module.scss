@@ -1,0 +1,28 @@
+.Container {
+  @apply w-full h-full inline-flex justify-between p-2;
+  .Left {
+    @apply flex flex-col basis-1/4;
+    div{
+      @apply flex-1 gap-2;
+      .title{
+        @apply font-bold flex justify-center w-full text-3xl drop-shadow-lg;
+        -webkit-text-stroke: 0.1rem #fff;
+      }
+    }
+  }
+
+  .Center {
+
+  }
+
+  .Right {
+    @apply flex flex-col basis-1/4;
+    div{
+      @apply flex-1 justify-end;
+      .title{
+        @apply font-bold flex flex-col items-center w-full text-3xl drop-shadow-lg;
+        -webkit-text-stroke: 0.1rem #fff;
+      }
+    }
+  }
+}

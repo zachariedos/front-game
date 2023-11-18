@@ -17,24 +17,29 @@ export enum Games {
     BlindTest
 
 }
+
 type props = {
-    Game:Games
-    GameName:string
+    Game: Games
+    GameName: string,
+    onClick?: (event: any) => void
 }
 
 export default function GameSelectCard(props: props) {
     return (
-        <div className={`${styles.Card} bg-light-secondary dark:bg-dark-secondary even:bg-light-primary even:dark:bg-dark-primary`}>
+        <div
+            className={`${styles.Card} ${props.onClick && styles.Card_hover} bg-light-secondary dark:bg-dark-secondary even:bg-light-primary even:dark:bg-dark-primary`}
+            onClick={props.onClick}
+        >
             <div className={styles.Logo}>
-            {props.Game === Games.Quiz &&
-                <Quiz />
-            }
-            {props.Game === Games.Draw &&
-                <Draw />
-            }
-            {props.Game === Games.BlindTest &&
-                <BlindTest />
-            }
+                {props.Game === Games.Quiz &&
+                    <Quiz/>
+                }
+                {props.Game === Games.Draw &&
+                    <Draw/>
+                }
+                {props.Game === Games.BlindTest &&
+                    <BlindTest/>
+                }
             </div>
             <div className={`${styles.GameName}`}>
                 <span>{props.GameName}</span>

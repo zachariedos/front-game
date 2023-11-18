@@ -12,10 +12,10 @@ import 'react-toastify/dist/ReactToastify.css';
 // ----------- Import des fichiers de trad ----------------
 import common_fr from "./i18n/fr/common.json"
 import configuration_fr from "./i18n/fr/configuration.json"
+import connection_fr from "./i18n/fr/connection.json"
 import common_en from "./i18n/en/common.json"
 import configuration_en from "./i18n/en/configuration.json"
 import Index from "./Pages";
-import {useEffect} from "react";
 import Topbar from "./Component/Topbar";
 // --------------------------------------------------------
 
@@ -43,6 +43,7 @@ i18next
             fr: {
                 common: common_fr,
                 configuration: configuration_fr,
+                connection: connection_fr
             },
             en: {
                 common: common_en,
@@ -58,8 +59,6 @@ i18next
             }
         }
     })
-
-
 
 
 function App() {
