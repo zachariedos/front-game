@@ -4,6 +4,7 @@ import GameSelectCard, {Games} from "../../../Component/GameSelectCard";
 import QRCode from "react-qr-code";
 import {useEffect, useState} from "react";
 import md5 from 'md5';
+import {WaitingIcon} from "../../../Component/Icons/WaitingIcon";
 
 export default function WaitingPage() {
     const {t} = useTranslation()
@@ -24,7 +25,6 @@ export default function WaitingPage() {
             observer.disconnect();
         };
     });
-    console.log(import.meta.env)
     const [gameRoomId,setGameRoomId]= useState<string>(md5(new Date().getTime().toString()).substring(0, md5(new Date().getTime().toString()).length / 2))
     const [qrCodeValue,setQrCodeValue]= useState<string>(
         `${import.meta.env.VITE_FRONT_APP_URL}?game_room_id:${gameRoomId}`
@@ -32,7 +32,7 @@ export default function WaitingPage() {
 
     return <div className={styles.Container}>
         <div className={styles.Left}>
-            <div>a</div>
+            <div className={"text-light-secondary-400 dark:text-dark-secondary-500"}><WaitingIcon/></div>
             <div className={"flex flex-col"}>
                 <span
                     className={`${styles.title} text-light-secondary-400 dark:text-dark-secondary-500`}>Mode de jeu</span>
@@ -43,7 +43,6 @@ export default function WaitingPage() {
             dzada
         </div>
         <div className={styles.Right}>
-            <div>a</div>
             <div className={"flex flex-col items-center"}>
                  <span className={`${styles.title} text-light-secondary-400 dark:text-dark-secondary-500`}>
                         {gameRoomId}
