@@ -1,7 +1,6 @@
 import styles from "../../../Styles/GameSelect.module.scss"
 import {useTranslation} from "react-i18next";
 import GameSelectCard, {Games} from "../../../Component/GameSelectCard";
-import {useNavigate} from "react-router-dom";
 import api from "../../../api";
 
 export default function GameSelect() {
@@ -11,7 +10,11 @@ export default function GameSelect() {
         <div className={styles.Cards}>
             <GameSelectCard Game={Games.Quiz} GameName={t('configuration:game.quiz.name')}
                             onClick={() => {
-                                console.log(Games.Draw)
+                                api.game.create({
+                                    game_type: 1
+                                }).then((res) => {
+                                    console.log(res.room_id)
+                                })
                             }}
             />
             <GameSelectCard Game={Games.Draw} GameName={t('configuration:game.draw.name')}
@@ -24,7 +27,11 @@ export default function GameSelect() {
                             }}/>
             <GameSelectCard Game={Games.BlindTest} GameName={t('configuration:game.blind_test.name')}
                             onClick={() => {
-                                console.log(Games.BlindTest)
+                                api.game.create({
+                                    game_type: 3
+                                }).then((res) => {
+                                    console.log(res.room_id)
+                                })
                             }}/>
         </div>
     </div>

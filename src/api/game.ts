@@ -6,7 +6,7 @@ import client from "./axios"
 
 export async function create(data: {game_type:number}) {
 	try {
-		const res = await client.post(`${import.meta.env.VITE_API_URL}/game`, data, {
+		const res = await client.post(`${import.meta.env.VITE_API_URL}/game`, data.game_type, {
 			method: 'post',
 			headers: {
 				"Content-Type": "application/json"
