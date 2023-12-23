@@ -18,10 +18,27 @@ export async function create(data: {game_type:number}) {
 			status: string
 		}
 	} catch (e: any) {
-		throw await e.json()
+		throw await e.response
+	}
+}
+
+export async function show(game_id: string) {
+	try {
+		const res: {
+			status: number,
+			data: {
+				room_id: string,
+				message: string,
+				status: string
+			}
+		} = await client.get(`${import.meta.env.VITE_API_URL}/game/${game_id}`)
+		return res
+	} catch (e: any) {
+		throw await e.response
 	}
 }
 
 export default {
-	create
+	create,
+	show
 }

@@ -2,7 +2,9 @@ import {KeyedMutator, SWRConfiguration} from 'swr';
 import useApiFetch from "./useApiFetch";
 
 
-type GameData = any
+type GameData = {
+    room_id: string,
+}
 export default function useGame(
     game_id: string,
     options: SWRConfiguration & { fetch?: boolean, externalCall?: boolean } = {}
@@ -15,7 +17,7 @@ export default function useGame(
 
     const url = `${import.meta.env.VITE_API_URL}/game/${game_id}`
 
-    const {data, isLoading, isError, mutate} = useApiFetch<GameData>(url)
+    const {data, isLoading, isError, mutate} = useApiFetch<GameData>(url,options)
 
     return {
         data,

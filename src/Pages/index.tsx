@@ -5,6 +5,7 @@ import {useEffect, useMemo, useState} from "react";
 import GameSelect from "./Desktop/GameSelect";
 import {useLocation} from "react-router-dom";
 import React from 'react';
+import Preparing from "./Mobile/Preparing";
 
 export default function Index() {
     const location = useLocation();
@@ -27,7 +28,13 @@ export default function Index() {
                     }
                 </>
                 :
-                <Connection/>
+                <>
+                    {!room_id ?
+                        <Connection/>
+                        :
+                        <Preparing room_id={room_id}/>
+                    }</>
+
             }
         </div>
 

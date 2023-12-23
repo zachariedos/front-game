@@ -4,7 +4,7 @@ type InputType = {
     customColor?: string,
     placeholder?: string,
     value?: string,
-    onChange?: (event:any)=>void,
+    onChange?: (event: any) => void,
 }
 export default function Input(props: InputType) {
 
@@ -17,10 +17,10 @@ export default function Input(props: InputType) {
 
     const dynamicPadding = `p-${paddingBySize[props.size ?? "md"]}`;
     const dynamicTextSize = `text-${props.size ?? "md"}`;
-
     return <input type={props.type}
                   className={`
-                  focus:ring-1 outline-0 text-white font-bold shadow-md 
+                  focus:ring-1 outline-0 text-white font-bold shadow-md
+                  p-0.5 p-1 p-2 p-3 
                   text-${props.size ?? "md"} rounded ${dynamicPadding} ${dynamicTextSize} 
                   ring-light-primary-700 dark:ring-dark-primary-700 
                   bg-light-primary-500 dark:bg-dark-primary-500

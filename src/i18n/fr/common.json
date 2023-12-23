@@ -4,7 +4,14 @@
 			"message": "Un problème est survenu",
 			"submessage": "Page non trouvée"
 		},
-		"qr_code": "QR code incorrect"
+		"qr_code": "QR code incorrect",
+		"room_not_found": "La partie n'existe pas",
+		"player_name": "Merci de renseigner un nom de joueur"
 	},
-	"enter": "Entrer"
+	"enter": "Entrer",
+	"player": {
+		"name": "Nom de joueur"
+	},
+	"ready": "Prêt",
+	"not_ready": "Pas prêt"
 }
