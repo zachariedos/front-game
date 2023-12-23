@@ -1,21 +1,12 @@
-import {useEffect, useState} from 'react';
-import LightQuiz from '../../assets/Games/light/Quiz.svg';
-import LightDraw from '../../assets/Games/light/Draw.svg';
-import LightBlindTest from '../../assets/Games/light/BlindTest.svg';
-import DarkQuiz from '../../assets/Games/dark/Quiz.svg';
-import DarkDraw from '../../assets/Games/dark/Draw.svg';
-import DarkBlindTest from '../../assets/Games/dark/BlindTest.svg';
 import styles from './index.module.scss'
-import Quiz from "../GamesImages/Quiz";
-import Draw from "../GamesImages/Draw";
-import BlindTest from "../GamesImages/BlindTest";
-
+import React from 'react';
+import GamesImages from "../GamesImages";
+import {motion} from "framer-motion";
 
 export enum Games {
     Quiz,
     Draw,
     BlindTest
-
 }
 
 type props = {
@@ -26,24 +17,19 @@ type props = {
 
 export default function GameSelectCard(props: props) {
     return (
-        <div
+        <motion.div
             className={`${styles.Card} ${props.onClick && styles.Card_hover} bg-light-secondary dark:bg-dark-secondary even:bg-light-primary even:dark:bg-dark-primary`}
             onClick={props.onClick}
+            initial={{opacity: 0, y: 5}}
+            animate={{opacity: 1, y: 0}}
+            transition={{duration: .5}}
         >
             <div className={styles.Logo}>
-                {props.Game === Games.Quiz &&
-                    <Quiz/>
-                }
-                {props.Game === Games.Draw &&
-                    <Draw/>
-                }
-                {props.Game === Games.BlindTest &&
-                    <BlindTest/>
-                }
+                <GamesImages game_type_id={props.Game}/>
             </div>
             <div className={`${styles.GameName}`}>
                 <span>{props.GameName}</span>
             </div>
-        </div>
+        </motion.div>
     );
 }

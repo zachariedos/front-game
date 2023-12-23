@@ -16,13 +16,13 @@
 		"empty": "Aucun utilisateur"
 	},
 	"game": {
-		"quiz": {
+		"1": {
 			"name": "Quiz"
 		},
-		"draw": {
+		"2": {
 			"name": "Dessin"
 		},
-		"blind_test": {
+		"3": {
 			"name": "Blind test"
 		}
 	}

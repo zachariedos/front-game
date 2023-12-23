@@ -17,6 +17,7 @@ import common_en from "./i18n/en/common.json"
 import configuration_en from "./i18n/en/configuration.json"
 import Index from "./Pages";
 import Topbar from "./Component/Topbar";
+import React from 'react';
 // --------------------------------------------------------
 
 library.add(fas)
@@ -48,6 +49,7 @@ i18next
             en: {
                 common: common_en,
                 configuration: configuration_en,
+                connection: connection_fr
             }
         },
         fallbackLng: ['fr'],
@@ -62,7 +64,6 @@ i18next
 
 
 function App() {
-
     return (
         <QueryClientProvider client={queryClient}>
             <ToastContainer autoClose={3000} closeOnClick/>

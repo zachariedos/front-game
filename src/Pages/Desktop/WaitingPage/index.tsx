@@ -1,60 +1,82 @@
 import styles from "../../../Styles/WaitingPage.module.scss"
 import {useTranslation} from "react-i18next";
-import GameSelectCard, {Games} from "../../../Component/GameSelectCard";
+import GameSelectCard from "../../../Component/GameSelectCard";
 import QRCode from "react-qr-code";
-import {useEffect, useState} from "react";
-import md5 from 'md5';
-import {WaitingIcon} from "../../../Component/Icons/WaitingIcon";
-
-export default function WaitingPage() {
+import React, {useMemo} from "react";
+import useGame from "../../../Hooks/useGame";
+import {Hourglass, ThreeCircles} from "react-loader-spinner";
+import {motion} from "framer-motion";
+type props = {
+    room_id: string
+}
+export default function WaitingPage(props:props) {
     const {t} = useTranslation()
 
+    const qrCodeValue = useMemo(() => {
+        return `${import.meta.env.VITE_FRONT_APP_URL}?game_room_id=${props.room_id}`
+    }, [props.room_id])
 
-    const [theme, setTheme] = useState<string>(localStorage?.theme);
 
-    useEffect(() => {
-        const observer = new MutationObserver((mutationsList) => {
-            for (const mutation of mutationsList) {
-                if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-                    setTheme(document.documentElement.classList.value);
-                }
-            }
-        });
-        observer.observe(document.documentElement, {attributes: true});
-        return () => {
-            observer.disconnect();
-        };
-    });
-    const [gameRoomId,setGameRoomId]= useState<string>(md5(new Date().getTime().toString()).substring(0, md5(new Date().getTime().toString()).length / 2))
-    const [qrCodeValue,setQrCodeValue]= useState<string>(
-        `${import.meta.env.VITE_FRONT_APP_URL}?game_room_id:${gameRoomId}`
-    )
+    const {
+        data: room,
+        isLoading: room_isLoading,
+        isError: room_isError,
+        mutate: room_mutate
+    } = useGame(props.room_id)
 
     return <div className={styles.Container}>
         <div className={styles.Left}>
-            <div className={"text-light-secondary-400 dark:text-dark-secondary-500"}><WaitingIcon/></div>
-            <div className={"flex flex-col"}>
+            <motion.div
+                className={"text-light-secondary-400 h-1/4 w-full flex items-center justify-center dark:text-dark-secondary-500"}
+                initial={{opacity: 0, y: 5}}
+                animate={{opacity: 1, y: 0}}
+                transition={{duration: .5}}
+            >
+                <Hourglass
+                    colors={["currentColor","currentColor"]}
+                    height={"75%"}
+                    width={"75%"}
+                />
+            </motion.div>
+            <div className={"flex flex-1 flex-col"}>
                 <span
                     className={`${styles.title} text-light-secondary-400 dark:text-dark-secondary-500`}>Mode de jeu</span>
-                <GameSelectCard Game={Games.Quiz} GameName={t('configuration:game.quiz.name')}/>
+                {
+                    room_isLoading ?
+                        <div
+                            className={"text-light-secondary-400 h-full w-full flex items-center justify-center dark:text-dark-secondary-500"}
+                        >
+                            <ThreeCircles
+                                color={"currentColor"}
+                                height={"75%"}
+                                width={"75%"}
+                            />
+                        </div>
+                        :
+                        <GameSelectCard Game={room?.game_type} GameName={t(`configuration:game.${room?.game_type}.name`)}/>
+                }
             </div>
         </div>
         <div className={styles.Center}>
             dzada
         </div>
-        <div className={styles.Right}>
+        <motion.div className={styles.Right}
+                    initial={{opacity: 0, y: 5}}
+                    animate={{opacity: 1, y: 0}}
+                    transition={{duration: 1}}>
             <div className={"flex flex-col items-center"}>
                  <span className={`${styles.title} text-light-secondary-400 dark:text-dark-secondary-500`}>
-                        {gameRoomId}
+                        {props.room_id}
                     </span>
-                <div className={"w-3/4 flex"}>
-                <QRCode value={qrCodeValue} bgColor={"transparent"} fgColor={theme == "light" ? "#6791A4" : "#8D578F"}  />
+                <div className={"w-3/4 flex text-light-secondary-500 dark:text-dark-secondary-500"}>
+                    <QRCode value={qrCodeValue} bgColor={"transparent"}
+                            fgColor={"currentColor"}/>
                 </div>
                 <div className={`${styles.title} text-light-secondary-400 dark:text-dark-secondary-500`}>
                     <span>6</span>
                     <span>participants</span>
                 </div>
             </div>
-        </div>
+        </motion.div>
     </div>
 }

@@ -1,38 +1,48 @@
 import styles from "../../../Styles/GameSelect.module.scss"
 import {useTranslation} from "react-i18next";
-import GameSelectCard, {Games} from "../../../Component/GameSelectCard";
+import GameSelectCard from "../../../Component/GameSelectCard";
 import api from "../../../api";
+import {useNavigate} from "react-router-dom";
+import React, {useState} from "react";
+import {ThreeCircles} from "react-loader-spinner";
+import {AnimatePresence} from "framer-motion";
 
 export default function GameSelect() {
     const {t} = useTranslation()
-
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState(false)
     return <div className={styles.CardContainer}>
         <div className={styles.Cards}>
-            <GameSelectCard Game={Games.Quiz} GameName={t('configuration:game.quiz.name')}
+            <AnimatePresence>
+                {loading ? <div className={"text-light-secondary dark:text-dark-secondary"}><ThreeCircles
+                        visible={true}
+                        height="100"
+                        width="100"
+                        color={"currentColor"}
+                        ariaLabel="three-circles-loading"
+                    />
+                    </div>
+                    :
+                    [1, 2, 3].map((i) => {
+                        return <GameSelectCard
+                            key={`game-select-${i}`}
+                            Game={i}
+                            GameName={t(`configuration:game.${i}.name`)}
                             onClick={() => {
+                                setLoading(true)
                                 api.game.create({
-                                    game_type: 1
+                                    game_type: i
                                 }).then((res) => {
-                                    console.log(res.room_id)
+                                    navigate(`?room_id=${res.room_id}`)
+                                }).finally(() => {
+                                    setLoading(false)
                                 })
                             }}
-            />
-            <GameSelectCard Game={Games.Draw} GameName={t('configuration:game.draw.name')}
-                            onClick={() => {
-                                api.game.create({
-                                    game_type: 2
-                                }).then((res) => {
-                                    console.log(res.room_id)
-                                })
-                            }}/>
-            <GameSelectCard Game={Games.BlindTest} GameName={t('configuration:game.blind_test.name')}
-                            onClick={() => {
-                                api.game.create({
-                                    game_type: 3
-                                }).then((res) => {
-                                    console.log(res.room_id)
-                                })
-                            }}/>
+                        />
+                    })
+
+                }
+            </AnimatePresence>
         </div>
     </div>
 }
