@@ -6,15 +6,15 @@ import React, {useMemo} from "react";
 import useGame from "../../../Hooks/useGame";
 import {Hourglass, ThreeCircles} from "react-loader-spinner";
 import {motion} from "framer-motion";
-type props = {
-    room_id: string
-}
-export default function WaitingPage(props:props) {
-    const {t} = useTranslation()
+import {useParams} from "react-router-dom";
 
+
+export default function WaitingPage() {
+    const {t} = useTranslation()
+    const {room_id} = useParams();
     const qrCodeValue = useMemo(() => {
-        return `${import.meta.env.VITE_FRONT_APP_URL}?game_room_id=${props.room_id}`
-    }, [props.room_id])
+        return `${import.meta.env.VITE_FRONT_APP_URL}?game_room_id=${room_id}`
+    }, [room_id])
 
 
     const {
@@ -22,7 +22,7 @@ export default function WaitingPage(props:props) {
         isLoading: room_isLoading,
         isError: room_isError,
         mutate: room_mutate
-    } = useGame(props.room_id)
+    } = useGame(room_id??"")
 
     return <div className={styles.Container}>
         <div className={styles.Left}>
@@ -33,7 +33,7 @@ export default function WaitingPage(props:props) {
                 transition={{duration: .5}}
             >
                 <Hourglass
-                    colors={["currentColor","currentColor"]}
+                    colors={["currentColor", "currentColor"]}
                     height={"75%"}
                     width={"75%"}
                 />
@@ -53,7 +53,9 @@ export default function WaitingPage(props:props) {
                             />
                         </div>
                         :
-                        <GameSelectCard Game={room?.game_type} GameName={t(`configuration:game.${room?.game_type}.name`)}/>
+                        room?.game_type &&
+                        <GameSelectCard Game={room.game_type}
+                                        GameName={t(`configuration:game.${room.game_type}.name`)}/>
                 }
             </div>
         </div>
@@ -66,7 +68,7 @@ export default function WaitingPage(props:props) {
                     transition={{duration: 1}}>
             <div className={"flex flex-col items-center"}>
                  <span className={`${styles.title} text-light-secondary-400 dark:text-dark-secondary-500`}>
-                        {props.room_id}
+                        {room_id}
                     </span>
                 <div className={"w-3/4 flex text-light-secondary-500 dark:text-dark-secondary-500"}>
                     <QRCode value={qrCodeValue} bgColor={"transparent"}

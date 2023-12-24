@@ -33,7 +33,7 @@ export default function GameSelect() {
                                 api.game.create({
                                     game_type: i
                                 }).then((res) => {
-                                    navigate(`?room_id=${res.room_id}`)
+                                    navigate(`${res.room_id}`)
                                 }).finally(() => {
                                     setLoading(false)
                                 })

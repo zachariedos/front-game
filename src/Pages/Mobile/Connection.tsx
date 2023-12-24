@@ -41,7 +41,7 @@ export default function Connection() {
                                 setIsLoading(true)
                                 api.game.show(result.split("game_room_id=")[1]).then((res) => {
                                     if (res?.status === 200) {
-                                        navigate(`?room_id=${inputValue}`);
+                                        navigate(`${inputValue}`);
                                     } else {
                                         toast.error(t('common:error.room_not_found'), {
                                             toastId: "failRoomNotFound"
@@ -91,7 +91,7 @@ export default function Connection() {
                             setIsLoading(true)
                             api.game.show(inputValue).then((res) => {
                                 if (res?.status === 200) {
-                                    navigate(`?room_id=${inputValue}`);
+                                    navigate(`${inputValue}`);
                                 } else {
                                     toast.error(t('common:error.room_not_found'), {
                                         toastId: "failRoomNotFound"

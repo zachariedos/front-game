@@ -4,6 +4,7 @@ import useApiFetch from "./useApiFetch";
 
 type GameData = {
     room_id: string,
+    game_type: number,
 }
 export default function useGame(
     game_id: string,

@@ -1,6 +1,6 @@
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {fas} from '@fortawesome/free-solid-svg-icons'
-import {BrowserRouter,} from "react-router-dom";
+import {BrowserRouter, Route, Routes, useNavigate, useParams,} from "react-router-dom";
 import {QueryClient, QueryClientProvider,} from '@tanstack/react-query'
 import i18next from "i18next";
 import {initReactI18next} from "react-i18next";
@@ -17,7 +17,12 @@ import common_en from "./i18n/en/common.json"
 import configuration_en from "./i18n/en/configuration.json"
 import Index from "./Pages";
 import Topbar from "./Component/Topbar";
-import React from 'react';
+import React, {useEffect, useMemo} from 'react';
+import GameSelect from "./Pages/Desktop/GameSelect";
+import WaitingPage from "./Pages/Desktop/WaitingPage";
+import {isMobile} from "react-device-detect";
+import Connection from "./Pages/Mobile/Connection";
+import Preparing from "./Pages/Mobile/Preparing";
 // --------------------------------------------------------
 
 library.add(fas)
@@ -63,18 +68,32 @@ i18next
     })
 
 
+// ... (imports remain unchanged)
+
 function App() {
+    const mobileMode = useMemo(() => isMobile, [isMobile]);
+
     return (
         <QueryClientProvider client={queryClient}>
             <ToastContainer autoClose={3000} closeOnClick/>
             <div className={`${styles.Container} bg-light-principal dark:bg-dark-principal `}>
                 <BrowserRouter>
+                    {mobileMode ? (
+                        <Routes>
+                                <Route path="" element={<Connection/>}/>
+                                <Route path=":room_id" element={<Preparing/>}/>
+                        </Routes>
+                    ) : (
+                        <Routes>
+                                <Route path="" element={<GameSelect/>}/>
+                                <Route path=":room_id" element={<WaitingPage/>}/>
+                        </Routes>
+                    )}
                     <Topbar/>
-                    <Index/>
                 </BrowserRouter>
             </div>
         </QueryClientProvider>
-    )
+    );
 }
 
 export default App
